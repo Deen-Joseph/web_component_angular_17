@@ -1,4 +1,20 @@
-# AngWc171
+# Angular 17 Web Component
+
+===
+
+latest version to run angular web component.
+
+Best way to call or display angular component in other front-end frameworks
+
+Build the app and call the script to access the web component.
+
+In this app, the HTML tag to call the web component is:
+
+<web-component text="dummy"></web-component>
+
+value passed through `text` will be displayed inside web components app.
+
+====
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 

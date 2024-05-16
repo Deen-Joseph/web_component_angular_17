@@ -1,18 +1,25 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { createCustomElement } from '@angular/elements';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+import { WebComponentComponent } from './web-component/web-component.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [WebComponentComponent],
+  imports: [BrowserModule, CommonModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [provideAnimationsAsync()],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const customElement = createCustomElement(WebComponentComponent, {
+      injector: this.injector,
+    });
+    customElements.define('web-component', customElement);
+  }
+}
